@@ -1,0 +1,4 @@
+dbgen-src/build/
+*.tbl.*
+nation.tbl
+region.tbl
