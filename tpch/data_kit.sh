@@ -268,7 +268,7 @@ function load_data_file() {
 
     [[ -f ${TBL_PATH} ]] || fatal_error "Can't find file ${TBL_PATH} to load!"
     ${MYSQL_BASE}/bin/mysql -h ${HOST} -P${PORT} -u${USERNAME} -p${PASSWORD} -D ${DATABASE} \
-        -e "LOAD DATA INFILE '${TBL_PATH}' INTO TABLE ${TBL_NAME} FIELDS TERMINATED BY '|';"
+        -e "LOAD DATA LOCAL INFILE '${TBL_PATH}' INTO TABLE ${TBL_NAME} FIELDS TERMINATED BY '|';"
 
     if [[ ! -z ${CHUNK} ]]; then
         log_info "Loaded data part ${CHUNK} for ${DATABASE}.${TBL_NAME} from ${TBL_PATH} ..."
