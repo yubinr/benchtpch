@@ -253,10 +253,10 @@ function prepare_schema() {
     [[ -f ${DDL_SQL} ]] || fatal_error "Missing parameter for --ddl"
 
     ${MYSQL_BASE}/bin/mysql -h${HOST} -P${PORT} -u${USERNAME} -p${PASSWORD} \
-        -e "DROP DATABASE IF EXISTS ${DATABASE}; CREATE DATABASE ${DATABASE};" >/dev/null 2>&1
+        -e "DROP DATABASE IF EXISTS ${DATABASE}; CREATE DATABASE ${DATABASE};"
 
     ${MYSQL_BASE}/bin/mysql -h${HOST} -P${PORT} -u${USERNAME} -p${PASSWORD} \
-        -D ${DATABASE} -e "SET GLOBAL DEFAULT_STORAGE_ENGINE=InnoDB; SOURCE ${DDL_SQL};" >/dev/null 2>&1
+        -D ${DATABASE} -e "SOURCE ${DDL_SQL};"
 }
 
 function load_data_file() {
