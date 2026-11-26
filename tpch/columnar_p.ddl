@@ -1,13 +1,13 @@
 CREATE TABLE region ( r_regionkey  BIGINT NOT NULL,
                       r_name       CHAR(25) NOT NULL,
                       r_comment    VARCHAR(152),
-                      PRIMARY KEY (r_regionkey)) COMMENT 'COLUMNAR=1';
+                      PRIMARY KEY (r_regionkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1';
 
 CREATE TABLE nation ( n_nationkey  BIGINT NOT NULL,
                       n_name       CHAR(25) NOT NULL,
                       n_regionkey  BIGINT NOT NULL,
                       n_comment    VARCHAR(152),
-                      PRIMARY KEY (n_nationkey)) COMMENT 'COLUMNAR=1';
+                      PRIMARY KEY (n_nationkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1';
 
 CREATE TABLE part ( p_partkey     BIGINT NOT NULL,
                     p_name        VARCHAR(55) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE part ( p_partkey     BIGINT NOT NULL,
                     p_container   CHAR(10) NOT NULL,
                     p_retailprice DECIMAL(15,2) NOT NULL,
                     p_comment     VARCHAR(23) NOT NULL,
-                    PRIMARY KEY (p_partkey)) COMMENT 'COLUMNAR=1'
+                    PRIMARY KEY (p_partkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                     PARTITION BY HASH(p_partkey) partitions 24;
 
 
@@ -29,7 +29,7 @@ CREATE TABLE supplier ( s_suppkey     BIGINT NOT NULL,
                         s_phone       CHAR(15) NOT NULL,
                         s_acctbal     DECIMAL(15,2) NOT NULL,
                         s_comment     VARCHAR(101) NOT NULL,
-                        PRIMARY KEY (s_suppkey)) COMMENT 'COLUMNAR=1'
+                        PRIMARY KEY (s_suppkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                         PARTITION BY HASH(s_suppkey) partitions 24;
 
 CREATE TABLE partsupp ( ps_partkey     BIGINT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE partsupp ( ps_partkey     BIGINT NOT NULL,
                         ps_availqty    BIGINT NOT NULL,
                         ps_supplycost  DECIMAL(15,2)  NOT NULL,
                         ps_comment     VARCHAR(199) NOT NULL,
-                        PRIMARY KEY (ps_partkey, ps_suppkey)) COMMENT 'COLUMNAR=1'
+                        PRIMARY KEY (ps_partkey, ps_suppkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                         PARTITION BY HASH(ps_partkey) partitions 24;
 
 CREATE TABLE customer ( c_custkey     BIGINT NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE customer ( c_custkey     BIGINT NOT NULL,
                         c_acctbal     DECIMAL(15,2)   NOT NULL,
                         c_mktsegment  CHAR(10) NOT NULL,
                         c_comment     VARCHAR(117) NOT NULL,
-                        PRIMARY KEY (c_custkey)) COMMENT 'COLUMNAR=1'
+                        PRIMARY KEY (c_custkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                         PARTITION BY HASH(c_custkey) partitions 24;
 
 CREATE TABLE orders ( o_orderkey       BIGINT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE orders ( o_orderkey       BIGINT NOT NULL,
                       o_clerk          CHAR(15) NOT NULL, 
                       o_shippriority   BIGINT NOT NULL,
                       o_comment        VARCHAR(79) NOT NULL,
-                      PRIMARY KEY (o_orderkey)) COMMENT 'COLUMNAR=1'
+                      PRIMARY KEY (o_orderkey)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                       PARTITION BY HASH(o_orderkey) partitions 24;
 
 CREATE TABLE lineitem ( l_orderkey       BIGINT NOT NULL,
@@ -79,5 +79,5 @@ CREATE TABLE lineitem ( l_orderkey       BIGINT NOT NULL,
                         l_shipinstruct   CHAR(25) NOT NULL,
                         l_shipmode       CHAR(10) NOT NULL,
                         l_comment        VARCHAR(44) NOT NULL,
-                        PRIMARY KEY (l_orderkey, l_linenumber)) COMMENT 'COLUMNAR=1'
+                        PRIMARY KEY (l_orderkey, l_linenumber)) DEFAULT CHARSET=ascii COLLATE=ascii_bin COMMENT 'COLUMNAR=1'
                         PARTITION BY HASH(l_orderkey) partitions 24;
